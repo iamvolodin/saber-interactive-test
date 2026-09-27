@@ -100,15 +100,11 @@ namespace SerializerTests.Benchmarks
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Starting List Serializer Benchmarks...");
-            Console.WriteLine("Testing all implementations with 10,000 nodes.");
-            Console.WriteLine("Use --filter to test specific sizes (e.g., --filter \"*ListSize=100*\").");
+            Console.WriteLine("Running list serializer benchmarks.");
+            Console.WriteLine("Results are written to BenchmarkDotNet.Artifacts, including a GitHub flavoured markdown report.");
             Console.WriteLine();
 
-            var summary = BenchmarkRunner.Run<ListSerializerBenchmarks>();
-
-            Console.WriteLine("\nBenchmarks completed!");
-            Console.WriteLine("Results are saved in the BenchmarkDotNet.Artifacts directory.");
+            BenchmarkRunner.Run<ListSerializerBenchmarks>(config: null, args: args);
         }
     }
 }

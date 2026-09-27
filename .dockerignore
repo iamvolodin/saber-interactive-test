@@ -1,0 +1,31 @@
+# Build output
+bin/
+obj/
+
+# BenchmarkDotNet output, including the baseline copy and the docker run folder
+BenchmarkDotNet.Artifacts/
+BenchmarkDotNet.Artifacts.baseline/
+.docker-bench/
+
+# Test output
+TestResults/
+.docker-test/
+*.trx
+*.coverage
+coverage*.json
+coverage*.xml
+
+# VCS and IDE
+.git/
+.gitattributes
+.github/
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.DotSettings.user
+
+# OS
+.DS_Store
+Thumbs.db

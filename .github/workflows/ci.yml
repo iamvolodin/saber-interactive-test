@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore
+        run: dotnet restore SaberInteractiveTest.Tests/SaberInteractiveTest.Tests.csproj
+
+      - name: Build
+        run: dotnet build SaberInteractiveTest.Tests/SaberInteractiveTest.Tests.csproj -c Release --no-restore
+
+      - name: Test
+        run: >
+          dotnet test SaberInteractiveTest.Tests/SaberInteractiveTest.Tests.csproj
+          -c Release --no-build --logger "console;verbosity=normal"
+
+      - name: Build benchmarks
+        run: |
+          dotnet restore BenchmarkRunner/BenchmarkRunner.csproj
+          dotnet build BenchmarkRunner/BenchmarkRunner.csproj -c Release --no-restore
+
+# The benchmark project is only built, never executed: measurements are machine dependent and
+# would make the job fail for reasons unrelated to the code. A compile check still catches a
+# broken BenchmarkRunner or a serializer signature change.

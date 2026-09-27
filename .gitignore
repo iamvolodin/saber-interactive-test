@@ -1,0 +1,27 @@
+# Build output
+bin/
+obj/
+
+# BenchmarkDotNet output
+BenchmarkDotNet.Artifacts/
+.docker-bench/
+
+# Test output
+TestResults/
+.docker-test/
+*.trx
+*.coverage
+coverage*.json
+coverage*.xml
+
+# IDE
+.vs/
+.idea/
+.vscode/
+*.user
+*.suo
+*.DotSettings.user
+
+# OS
+.DS_Store
+Thumbs.db
